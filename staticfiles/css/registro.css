@@ -1,0 +1,117 @@
+/* === registro.css === */
+
+/* Fondo de toda la página */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #42a5f5, #64b5f6);
+}
+
+/* Contenedor centrado */
+.registration-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tarjeta del formulario */
+.registration-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px 35px;
+    width: 350px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Título */
+.registration-card h1 {
+    color: #1565c0;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* Campos de formulario */
+.registration-card p {
+    margin-bottom: 15px;
+}
+
+.registration-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* Inputs */
+.registration-card input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.registration-card input:focus {
+    border-color: #1e88e5;
+    box-shadow: 0 0 4px rgba(30, 136, 229, 0.3);
+    outline: none;
+}
+
+/* Botón */
+.registration-card button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #1e88e5;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.registration-card button:hover {
+    background: #1565c0;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo para móviles */
+@media (max-width: 400px) {
+    .registration-card {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}
+
+/* Enlace al login debajo del formulario */
+.login-link {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center; /* centra el enlace */
+}
+
+.login-link a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

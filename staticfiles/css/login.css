@@ -1,0 +1,159 @@
+/* Fondo general */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #1e88e5, #64b5f6);
+}
+
+/* Contenedor centrado */
+.login-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Tarjeta del login */
+.login-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  padding: 40px 35px;
+  width: 350px;
+  max-width: 100%;
+  text-align: center; /* centra títulos y botón */
+  animation: fadeIn 0.6s ease-in-out;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* todo el contenido centrado */
+}
+
+/* Título */
+.login-card h2 {
+  color: #1565c0;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+/* Campos de formulario */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* ocupa todo el ancho de la tarjeta */
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-align: left; /* etiqueta alineada a la izquierda dentro del input */
+}
+
+/* Entradas */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 15px;
+}
+
+/* Focus */
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #1e88e5;
+  box-shadow: 0 0 6px rgba(30, 136, 229, 0.3);
+  outline: none;
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 14px;
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #1565c0;
+}
+
+/* Enlace de contraseña olvidada */
+.forgot-password {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center; /* centra el enlace */
+}
+
+.forgot-password a {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #e53935;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
+  .login-card {
+    width: 100%;
+    padding: 30px 20px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  button {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  .login-card h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+}
+
