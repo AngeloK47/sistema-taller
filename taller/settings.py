@@ -20,7 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qface$g=*b&dq6wl_&s!4tbacbi6%_j(fcp^g_v(lwe#nt0f*k'
+import os
+SECRET_KEY = os.getenv('SECRET_KEY', 'insecure-dev-key')
 LOGIN_REDIRECT_URL = '/usuario/inicio/'
 
 MEDIA_URL = '/media/'
