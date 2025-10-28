@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 import qrcode
 from io import BytesIO
 from django.core.files import File
-from PIL import Image, ImageDraw
+from PIL import Image
+from django.conf import settings
 
 class Vehiculo(models.Model):
     mecanico = models.CharField(max_length=100)
@@ -54,15 +55,15 @@ class Vehiculo(models.Model):
     qr_code = models.ImageField(upload_to='qr/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Guarda primero para tener el ID
+        super().save(*args, **kwargs)
 
-        # Incluir un enlace al detalle del vehículo
-        qr_info = f"http://127.0.0.1:8000/vehiculo/detalleVehiculo/{self.id}"
+        # Usa dominio configurable (Render o local)
+        qr_info = f"{settings.SITE_URL}/vehiculo/detalleVehiculo/{self.id}"
 
         qr_img = qrcode.make(qr_info)
-        qr_img = qr_img.convert('RGB')  # 👈 necesario
+        qr_img = qr_img.convert('RGB')
         canvas = Image.new('RGB', qr_img.size, 'white')
-        canvas.paste(qr_img, (0, 0))  # 👈 posición corregida
+        canvas.paste(qr_img)
 
         fname = f'qr_{self.id}.png'
         buffer = BytesIO()
@@ -71,6 +72,5 @@ class Vehiculo(models.Model):
         canvas.close()
 
         super().save(*args, **kwargs)
-
     def __str__(self):
         return f"{self.marca} ({self.chasis})"
