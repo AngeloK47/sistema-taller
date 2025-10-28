@@ -27,6 +27,7 @@ LOGIN_REDIRECT_URL = '/usuario/inicio/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
