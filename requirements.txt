@@ -8,3 +8,4 @@ qrcode==8.2
 six==1.17.0
 sqlparse==0.5.1
 tzdata==2024.1
+whitenoise==6.11.0
