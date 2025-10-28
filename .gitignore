@@ -1,0 +1,17 @@
+# Ignorar entorno virtual
+venv/
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local de Django
+*.sqlite3
+.env
+
+# Archivos de compilación o logs
+*.log

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Sistema Taller</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{% url 'inicio' %}">🔧 Sistema Taller</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link nav-btn perfil" href="{% url 'perfil' %}">👤 Perfil</a></li>
+          <li class="nav-item"><a class="nav-link nav-btn registrar" href="{% url 'ingresar_vehiculo' %}">🚗 Registrar Vehículo</a></li>
+          <li class="nav-item"><a class="nav-link nav-btn cerrar" href="{% url 'cerrarSesion' %}">🚪 Cerrar sesión</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link nav-btn registrar" href="{% url 'registro' %}">📝 Registrarse</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Contenido principal -->
+<div class="container mt-5 mb-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold text-white">Bienvenido al Sistema de Gestión del Taller</h1>
+        <p class="lead text-white-50 mt-2">Administra vehículos y diagnósticos de forma eficiente y centralizada.</p>
+    </div>
+
+    {% if user.is_authenticated %}
+    <!-- Filtros -->
+    <form method="get" class="mb-4 bg-light p-3 rounded-4 shadow-sm">
+        <div class="row g-2">
+            <div class="col-md-3"><input type="text" name="marca" placeholder="Marca" value="{{ request.GET.marca }}" class="form-control"></div>
+            <div class="col-md-3"><input type="text" name="color" placeholder="Color" value="{{ request.GET.color }}" class="form-control"></div>
+            <div class="col-md-3"><input type="text" name="mecanico" placeholder="Mecánico" value="{{ request.GET.mecanico }}" class="form-control"></div>
+            <div class="col-md-3"><input type="text" name="chasis" placeholder="Chasis" value="{{ request.GET.chasis }}" class="form-control"></div>
+        </div>
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary">🔍 Filtrar</button>
+            <a href="{% url 'inicio' %}" class="btn btn-secondary">Limpiar</a>
+        </div>
+    </form>
+
+    <!-- Tabla de vehículos -->
+    <div class="table-responsive bg-light p-3 rounded-4 shadow-sm">
+        <table class="table table-striped align-middle text-center mb-0">
+            <thead class="table-primary">
+                <tr>
+                    <th>Marca</th>
+                    <th>Color</th>
+                    <th>Mecánico</th>
+                    <th>Fecha</th>
+                    <th>Chasis</th>
+                    <th>Registrado por</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehiculo in vehiculos %}
+                <tr>
+                    <td>{{ vehiculo.marca }}</td>
+                    <td>{{ vehiculo.color }}</td>
+                    <td>{{ vehiculo.mecanico }}</td>
+                    <td>{{ vehiculo.fecha|date:"d/m/Y" }}</td>
+                    <td>{{ vehiculo.chasis }}</td>
+                    <td>{{ vehiculo.registrado_por.username }}</td>
+                    <td>
+                        <a href="{% url 'detalle_vehiculo' vehiculo.id %}" class="btn btn-sm btn-info">Ver perfil</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="7" class="text-muted">No hay vehículos registrados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <div class="text-center mt-4">
+        <a href="{% url 'ingresar_vehiculo' %}" class="btn btn-success btn-lg">➕ Registrar nuevo vehículo</a>
+    </div>  -->
+     {% else %}
+        <div class="inicio-container text-center mt-5">
+            <a href="{% url 'login' %}" class="btn btn-light btn-lg">🔑 Iniciar sesión</a>
+        </div>
+    {% endif %}
+</div>
+
+<footer class="footer text-center mt-5">
+    <p class="text-white-50">© 2025 Sistema Taller — Todos los derechos reservados.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
