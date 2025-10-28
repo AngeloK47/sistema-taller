@@ -83,13 +83,16 @@ WSGI_APPLICATION = 'taller.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tallerDB',
-        'USER': 'root',
-        'PASSWORD': 'angelo21'
+        'NAME': os.getenv('DATABASE_NAME', 'defaultdb'),
+        'USER': os.getenv('DATABASE_USER', 'avnadmin'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+        'HOST': os.getenv('DATABASE_HOST', 'tallerdb-angelopatrick.e.aivencloud.com'),
+        'PORT': os.getenv('DATABASE_PORT', '26577'),
+        'OPTIONS': {
+            'ssl': {'ssl-mode': 'REQUIRED'},
+        },
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
