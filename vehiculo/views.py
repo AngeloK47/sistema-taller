@@ -22,7 +22,6 @@ def ingresar_vehiculo(request):
         form = VehiculoForm()
     return render(request, 'vehiculo/ingresar_vehiculo.html', {'form': form})
 
-@login_required
 def detalle_vehiculo(request, vehiculo_id):
     vehiculo = get_object_or_404(Vehiculo, id=vehiculo_id)
 
